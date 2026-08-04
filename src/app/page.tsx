@@ -1,5 +1,8 @@
 import Image from "next/image"
-import { BrainCircuit, Bot, Code2, Activity, Lightbulb, Calendar, Users, MapPin, Target, Award, CheckCircle2, Quote, Globe, Server, ShieldCheck, CheckSquare, Settings } from "lucide-react"
+import Link from "next/link"
+import { BrainCircuit, Bot, Code2, Activity, Lightbulb, Calendar, Users, MapPin, Target, Award, CheckCircle2, Quote, Globe, Server, ShieldCheck, CheckSquare, Settings, ArrowRight } from "lucide-react"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 import { Navbar } from "@/components/navbar"
 import { RegistrationWizard } from "@/components/registration-wizard"
@@ -91,6 +94,15 @@ export default function Home() {
                     <span className="text-[9px] font-bold text-slate-800 uppercase leading-tight mb-1">Problem Solving</span>
                     <span className="text-[8px] text-slate-500 leading-tight">Think creatively. Solve real-world challenges.</span>
                   </div>
+                </div>
+
+                <div className="flex flex-wrap gap-4 mb-4">
+                  <Link href="/register" className={cn(buttonVariants({ variant: "default" }), "bg-[#0f62fe] hover:bg-[#0f62fe]/90 text-white font-bold px-8 h-12 rounded-lg shadow-xl shadow-blue-600/20 text-base")}>
+                    Register Now
+                  </Link>
+                  <Link href="#about" className={cn(buttonVariants({ variant: "outline" }), "border-blue-200 text-blue-700 bg-blue-50/50 hover:bg-blue-100 font-semibold px-8 h-12 rounded-lg")}>
+                    Learn More
+                  </Link>
                 </div>
               </div>
             </div>
@@ -188,9 +200,16 @@ export default function Home() {
               </div>
 
               {/* Right Side: Forms and Info */}
-              <div className="lg:col-span-8 flex flex-col gap-8">
-                {/* Main Registration Wizard embedded */}
-                <RegistrationWizard />
+              <div className="lg:col-span-8 flex flex-col gap-8 justify-center">
+                <div className="bg-[#060b14] border border-[#1e293b] rounded-2xl p-8 sm:p-12 text-center shadow-2xl flex flex-col items-center">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Ready to start the journey?</h3>
+                  <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+                    Registration is quick and simple. Click the button below to fill out the enrollment form for your child.
+                  </p>
+                  <Link href="/register" className={cn(buttonVariants({ variant: "default" }), "bg-[#fcdb44] hover:bg-[#fcdb44]/90 text-[#0b1221] font-black px-10 h-14 rounded-xl shadow-[0_0_20px_rgba(252,219,68,0.3)] hover:shadow-[0_0_30px_rgba(252,219,68,0.5)] transition-all text-lg w-full sm:w-auto")}>
+                    Go to Registration Page <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </div>
 
                 {/* About the program card */}
                 <div className="grid md:grid-cols-2 gap-8 items-stretch mt-4">

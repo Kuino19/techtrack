@@ -129,6 +129,8 @@ model Registration {
   attendances Attendance[]
   certificate Certificate?
 
+  receivesFreeShirt Boolean @default(false)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

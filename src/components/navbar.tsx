@@ -1,13 +1,19 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
         
         {/* Logos */}
@@ -56,17 +62,50 @@ export function Navbar() {
 
         {/* CTA & Mobile Menu */}
         <div className="flex items-center gap-3">
-          <Button className="hidden sm:flex bg-[#0f62fe] hover:bg-[#0f62fe]/90 text-white font-semibold px-4 sm:px-6 rounded-md shadow-md text-xs sm:text-sm">
+          <Link href="/register" className={cn(buttonVariants({ variant: "default" }), "hidden sm:flex bg-[#0f62fe] hover:bg-[#0f62fe]/90 text-white font-semibold px-4 sm:px-6 rounded-md shadow-md text-xs sm:text-sm")}>
             Register
-          </Button>
-          <button className="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          </Link>
+          <button 
+            className="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" 
+            aria-label="Menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute top-20 left-0 w-full bg-white border-b shadow-lg lg:hidden overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-6 gap-5">
+              <Link href="#" className="text-base font-semibold text-slate-800 hover:text-blue-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+              <Link href="#" className="text-base font-semibold text-slate-800 hover:text-blue-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              <Link href="#" className="text-base font-semibold text-slate-800 hover:text-blue-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Program</Link>
+              <Link href="#" className="text-base font-semibold text-slate-800 hover:text-blue-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
+              <Link href="#" className="text-base font-semibold text-slate-800 hover:text-blue-600 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
+              
+              <div className="border-t border-slate-100 pt-5 mt-2">
+                <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} className={cn(buttonVariants({ variant: "default" }), "w-full bg-[#0f62fe] hover:bg-[#0f62fe]/90 text-white font-semibold h-12 text-base")}>
+                  Register
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
