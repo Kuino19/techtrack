@@ -2,11 +2,14 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import { CheckCircle2, FileDown, ArrowRight, Calendar, MapPin, Mail, Bell } from "lucide-react"
 import confetti from "canvas-confetti"
 
-export default function RegistrationSuccessPage() {
+function SuccessContent() {
+  const searchParams = useSearchParams()
+  const studentId = searchParams.get("id")
   useEffect(() => {
     // Trigger confetti explosion on load
     const duration = 3 * 1000;
@@ -175,6 +178,14 @@ export default function RegistrationSuccessPage() {
             >
               Go to Parent Portal
             </Link>
+            {studentId && (
+              <Link 
+                href={`/student/${studentId}`}
+                className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-bold py-4 px-6 rounded-2xl transition-colors shadow-lg shadow-blue-600/20"
+              >
+                Go to Student Portal
+              </Link>
+            )}
             <Link 
               href="/"
               className="block w-full bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-center font-bold py-4 px-6 rounded-2xl transition-colors"
@@ -187,5 +198,13 @@ export default function RegistrationSuccessPage() {
       </main>
 
     </div>
+  )
+}
+
+export default function RegistrationSuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-bold text-slate-500">Loading your success page...</div>}>
+      <SuccessContent />
+    </Suspense>
   )
 }
