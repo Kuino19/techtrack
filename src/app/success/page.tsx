@@ -1,8 +1,40 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect } from "react"
 import { CheckCircle2, FileDown, ArrowRight, Calendar, MapPin, Mail, Bell } from "lucide-react"
+import confetti from "canvas-confetti"
 
 export default function RegistrationSuccessPage() {
+  useEffect(() => {
+    // Trigger confetti explosion on load
+    const duration = 3 * 1000;
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ['#002b5e', '#10b981', '#f59e0b']
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ['#002b5e', '#10b981', '#f59e0b']
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+    frame();
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       

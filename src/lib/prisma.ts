@@ -1,9 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { Pool, neonConfig } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
-import ws from 'ws'
 
-neonConfig.webSocketConstructor = ws
+// Use fetch instead of ws for Turbopack compatibility
 
 const prismaClientSingleton = () => {
   const connectionString = `${process.env.DATABASE_URL}`

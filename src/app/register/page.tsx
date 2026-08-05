@@ -228,21 +228,21 @@ export default function RegisterPage() {
                   <CardDescription>Please review the information before submitting.</CardDescription>
                 </CardHeader>
                 <div className="space-y-6 rounded-lg bg-muted/50 p-6">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                     <div>
-                      <p className="text-muted-foreground">Student Name</p>
+                      <p className="text-muted-foreground mb-1">Student Name</p>
                       <p className="font-medium text-foreground">{formData.studentFirstName || "N/A"} {formData.studentLastName} ({formData.age || "N/A"})</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Parent/Guardian</p>
+                      <p className="text-muted-foreground mb-1">Parent/Guardian</p>
                       <p className="font-medium text-foreground">{formData.parentName || "N/A"}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Email</p>
-                      <p className="font-medium text-foreground">{formData.email || "N/A"}</p>
+                      <p className="text-muted-foreground mb-1">Email</p>
+                      <p className="font-medium text-foreground break-all">{formData.email || "N/A"}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Program</p>
+                      <p className="text-muted-foreground mb-1">Program</p>
                       <p className="font-medium text-foreground">AI & Robotics Fundamentals</p>
                     </div>
                     {stats?.freeShirtsAvailable && formData.tShirtSize && (
