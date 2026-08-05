@@ -13,6 +13,7 @@ export type StudentData = {
   id: string
   fullName: string
   age: number
+  tShirtSize?: string
   createdAt: Date
   parent: {
     name: string | null

@@ -62,7 +62,7 @@ export async function registerStudent(data: RegistrationData): Promise<RegisterS
     })
 
     // Transaction to create Parent, Student, and Registration
-    const registration = await prisma.$transaction(async (tx) => {
+    const registration = await prisma.$transaction(async (tx: any) => {
       // 1. Upsert Parent (User)
       const parent = await tx.user.upsert({
         where: { email },
