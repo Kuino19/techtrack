@@ -213,8 +213,17 @@ export default function Home() {
 
                 {/* About the program card */}
                 <div className="grid md:grid-cols-2 gap-8 items-stretch mt-4">
-                  <div className="hidden md:block">
-                    {/* Spacer for alignment if needed, design shows a secondary card here but wizard handles it */}
+                  <div className="flex flex-col items-center justify-center">
+                    <h4 className="text-[#fcdb44] font-bold mb-4 uppercase tracking-wider text-sm text-center">See how easy it is to register</h4>
+                    <div className="relative w-full max-w-[260px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-4 border-[#1e293b] bg-black">
+                      <iframe 
+                        className="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/Wu2FvPTDkqY?rel=0" 
+                        title="Registration Walkthrough" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen>
+                      </iframe>
+                    </div>
                   </div>
                   <div className="bg-transparent border border-blue-500/30 rounded-xl p-6 relative shadow-[0_0_15px_rgba(59,130,246,0.15)] flex flex-col justify-between overflow-hidden">
                     <div>
